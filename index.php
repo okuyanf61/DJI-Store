@@ -28,6 +28,12 @@ if (!$_SESSION['login']) {
     <a id="navbar-profile" href="profile.php">Profile</a>
     <a id="navbar-logout" href="logout.php" style="display: none">Logout</a>
     <button class="basket" style="float:right" onclick="toggleBasket()">&#128722;</button>
+    <select name="category" id="category" onchange="fillByCategory()" style="float:right" >
+        <option value="Category">Category</option>
+        <option value="FPV Experience">FPV Experience</option>
+        <option value="Aerial Cinematic">Aerial Cinematic</option>
+        <option value="Aerial Photography">Aerial Photography</option>
+    </select>
 </div>
 
 <div class="row" id="shop">
@@ -213,6 +219,40 @@ if (!$_SESSION['login']) {
     let isAdmin = parseInt(<?php echo json_encode($_SESSION["user_is_admin"]); ?>);
     if (isAdmin) {
         document.getElementById("add-product").style.display = "block";
+    }
+
+    function fillByCategory() {
+        let productDiv = document.getElementById("leftcolumn");
+        productDiv.innerHTML = "";
+        switch (document.getElementById("category").value) {
+            case "Category":
+                fillPage();
+                break;
+
+            case "FPV Experience":
+                for (let i = 0; i < db_products.length; i++) {
+                    if (db_products[i].product_category === "FPV Experience") {
+                        addItemToLeftColumn(db_products[i]);
+                    }
+                }
+                break;
+
+            case "Aerial Cinematic":
+                for (let i = 0; i < db_products.length; i++) {
+                    if (db_products[i].product_category === "Aerial Cinematic") {
+                        addItemToLeftColumn(db_products[i]);
+                    }
+                }
+                break;
+
+            case "Aerial Photography":
+                for (let i = 0; i < db_products.length; i++) {
+                    if (db_products[i].product_category === "Aerial Photography") {
+                        addItemToLeftColumn(db_products[i]);
+                    }
+                }
+                break;
+        }
     }
 
 </script>
