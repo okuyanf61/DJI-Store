@@ -27,7 +27,7 @@ function addProduct() {
 }
 
 function addToBasket(product_id) {
-    basket.push(products[product_id - 1]);
+    basket.push(db_products[product_id - 1]);
     hideProduct();
 }
 
@@ -84,8 +84,8 @@ function toggleBasket() {
                 let product = basket[i];
                 table.innerHTML += `
                 <tr>
-                    <td>${product.name}</td>
-                    <td style="text-align: right">${numberWithCommas(product.price)} ₺</td>
+                    <td>${product.product_name}</td>
+                    <td style="text-align: right">${numberWithCommas(product.product_price)} ₺</td>
                 </tr>
                 `;
             }
@@ -120,7 +120,7 @@ function toggleBasket() {
 function totalPrice() {
     let total = 0;
     for (let i = 0; i < basket.length; i++) {
-        total += basket[i].price;
+        total += parseInt(basket[i].product_price);
     }
     return total;
 }
