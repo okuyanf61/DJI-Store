@@ -46,6 +46,7 @@ if ($_SESSION['login']) {
     <a href="index.php"">Home</a>
     <a href="#">About Us</a>
     <a href="#">Contact</a>
+    <a href="register.php">Register</a>
 </div>
 
 <div class="row" id="shop">
