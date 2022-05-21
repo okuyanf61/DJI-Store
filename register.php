@@ -63,7 +63,7 @@ if ($register) {
             <input type="text" id="user_gender" name="user_gender" placeholder="Male">
             <p>Website</p>
             <input type="url" id="user_website" name="user_website" placeholder="https://boyaci.com">
-            <button class="button black-button" id="submit" type="submit" name="register" value="register">Submit</button>
+            <button class="button black-button" id="submit" type="submit" name="register" value="register">Register</button>
             </script>
         </form>
     </div>
