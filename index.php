@@ -208,7 +208,7 @@ if (!$_SESSION['login']) {
 
 
     // Check if the user is admin from the session
-    let isAdmin = <?php echo json_encode($_SESSION["user_is_admin"]); ?>;
+    let isAdmin = parseInt(<?php echo json_encode($_SESSION["user_is_admin"]); ?>);
     if (isAdmin) {
         document.getElementById("add-product").style.display = "block";
     }
