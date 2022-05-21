@@ -1,4 +1,4 @@
-let basket = []
+let basket = JSON.parse(sessionStorage.getItem("basket")) || [];
 
 function numberWithCommas(x) {
     // Print numbers with dots as thousands separators
@@ -28,6 +28,7 @@ function addProduct() {
 
 function addToBasket(product_id) {
     basket.push(db_products[product_id - 1]);
+    sessionStorage.setItem("basket", JSON.stringify(basket));
     hideProduct();
 }
 
