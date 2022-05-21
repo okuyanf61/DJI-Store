@@ -25,6 +25,7 @@ if (!$_SESSION['login']) {
     <a href="#">Contact</a>
     <a id="navbar-login" href="login.php">Login</a>
     <a id="navbar-register" href="register.php">Register</a>
+    <a id="navbar-profile" href="profile.php">Profile</a>
     <a id="navbar-logout" href="logout.php" style="display: none">Logout</a>
     <button class="basket" style="float:right" onclick="toggleBasket()">&#128722;</button>
 </div>
@@ -204,6 +205,7 @@ if (!$_SESSION['login']) {
     // Delete login and register from navbar and add logout
     document.getElementById("navbar-login").style.display = "none";
     document.getElementById("navbar-register").style.display = "none";
+    document.getElementById("navbar-profile").style.display = "block";
     document.getElementById("navbar-logout").style.display = "block";
 
 
