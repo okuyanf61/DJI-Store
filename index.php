@@ -148,6 +148,52 @@
 
 </body>
 <script src="main.js"></script>
+<script>
+    <?php
+    include "credentials.php";
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "SELECT * FROM products";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $products = $stmt->fetchAll();
+
+        echo "let db_products = " . json_encode($products) . ";" ;
+
+    }
+    catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+    ?>
+
+    function addItemToLeftColumn(item) {
+        let productDiv = document.getElementById("leftcolumn");
+        let product = item;
+        productDiv.innerHTML += `
+        <div class="item">
+            <img class="product-image" src="${product.product_picture}" alt="${product.product_name}" onclick="showProduct(${product.product_id})">
+            <h3 style="text-align: center">${product.product_name}</h3>
+            <p style="text-align: center">${numberWithCommas(product.product_price)} ₺</p>
+            <button class="button" onclick="addToBasket(${product.product_id})">Add to Cart</button>
+        </div>
+        `;
+    }
+
+    function fillPage() {
+
+        for (let i = 0; i < db_products.length; i++) {
+            addItemToLeftColumn(db_products[i]);
+        }
+    }
+
+    fillPage()
+
+</script>
 </html>
 
 
