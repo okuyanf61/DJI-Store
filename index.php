@@ -1,5 +1,8 @@
 <?php
     session_start();
+if (!$_SESSION['login']) {
+    header("Location: login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +23,9 @@
     <a href="#" onclick="showHome()">Home</a>
     <a href="#">About Us</a>
     <a href="#">Contact</a>
+    <a id="navbar-login" href="login.php">Login</a>
+    <a id="navbar-register" href="register.php">Register</a>
+    <a id="navbar-logout" href="logout.php" style="display: none">Logout</a>
     <button class="basket" style="float:right" onclick="toggleBasket()">&#128722;</button>
 </div>
 
@@ -27,7 +33,7 @@
     <div class="leftcolumn" id="leftcolumn">
 
     </div>
-    <div class="rightcolumn" style="display: none">
+    <div class="rightcolumn" style="display: none" id="add-product">
         <div class="card">
             <h3>Add Product</h3>
             <form>
@@ -40,6 +46,8 @@
                           name="product_description"
                           placeholder="Tello: an impressive little drone for kids and adults that’s a blast to fly and helps users learn about drones with coding education."
                           required></textarea>
+                <p>Category</p>
+                <input type="text" id="product_category" name="product_category" placeholder="Aerial Photography" required>
                 <p>Image URL</p>
                 <input type="url" id="product_image" name="product_image"
                        placeholder="https://bit.ly/3iUm1zl" required>
@@ -192,6 +200,18 @@
     }
 
     fillPage()
+
+    // Delete login and register from navbar and add logout
+    document.getElementById("navbar-login").style.display = "none";
+    document.getElementById("navbar-register").style.display = "none";
+    document.getElementById("navbar-logout").style.display = "block";
+
+
+    // Check if the user is admin from the session
+    let isAdmin = <?php echo json_encode($_SESSION["user_is_admin"]); ?>;
+    if (isAdmin) {
+        document.getElementById("add-product").style.display = "block";
+    }
 
 </script>
 </html>
