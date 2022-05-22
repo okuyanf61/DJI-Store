@@ -8,7 +8,6 @@ function numberWithCommas(x) {
 
 function addToBasket(product_id) {
     // TODO: Ürün eklendiğinde veya update olduğunda sepet sapıtıyor.
-    // TODO: Sepete eklendiğinde animasyon eklenecek
     // Check if product is already in basket
     let product = db_products.filter(i => i.product_id == product_id)[0];
     let product_in_basket = basket.filter(i => i.product_id == product_id);
@@ -19,6 +18,11 @@ function addToBasket(product_id) {
         basket.push(product);
         sessionStorage.setItem("basket", JSON.stringify(basket));
     }
+    let basket_icon = document.getElementById("basket-icon");
+    basket_icon.style.backgroundColor = "green";
+    setTimeout(() => {
+        basket_icon.style.backgroundColor = "#333";
+    }, 500);
     hideProduct();
 }
 
@@ -67,7 +71,7 @@ function showProduct(product_id) {
         <h3 style="text-align: left">${numberWithCommas(product.product_price)} ₺</h3>
         </div>
         </div>
-        <button class="button" onclick="addToBasket(${product_id})">Add to Cart</button>
+        <button class="button" id="add-to-basket" onclick="addToBasket(${product_id})">Add to Cart</button>
     </div>`;
 }
 

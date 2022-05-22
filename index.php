@@ -26,9 +26,9 @@ if (!$_SESSION['login']) {
     <a id="navbar-login" href="login.php">Login</a>
     <a id="navbar-register" href="register.php">Register</a>
     <a id="navbar-profile" href="profile.php">Profile</a>
-    <a id="navbar-logout" href="logout.php" style="display: none">Logout</a>
     <a id="navbar-create-user" href="create_user.php" style="display: none">Create User</a>
-    <button class="basket" style="float:right" onclick="toggleBasket()">&#128722;</button>
+    <a id="navbar-logout" href="logout.php" style="display: none">Logout</a>
+    <button class="basket" id="basket-icon" style="float:right; transition: background-color 0.5s ease-in-out" onclick="toggleBasket()">&#128722;</button>
     <select name="category" id="category" onchange="fillByCategory()" style="float:right" >
         <option value="Category">Category</option>
         <option value="FPV Experience">FPV Experience</option>
@@ -210,7 +210,7 @@ if (!$_SESSION['login']) {
             <img class="product-image" src="${product.product_image}" alt="${product.product_name}" onclick="showProductAdmin(${product.product_id})">
             <h3 style="text-align: center">${product.product_name}</h3>
             <p style="text-align: center">${numberWithCommas(product.product_price)} ₺</p>
-            <button class="button" onclick="addToBasket(${product.product_id})">Add to Cart</button>
+            <button class="button" onclick="showProductAdmin(${product.product_id})">Edit</button>
         </div>
         `;
     }
