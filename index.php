@@ -3,28 +3,6 @@
 if (!$_SESSION['login']) {
     header("Location: login.php");
 }
-include "credentials.php";
-$register = false;
-try {
-    $connect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    if ($_POST['submit']) {
-        $product_name = $_POST['product_name'];
-        $product_price = $_POST['product_price'];
-        $product_description = $_POST['product_description'];
-        $product_category = $_POST['product_category'];
-        $product_image = $_POST['product_image'];
-        $sql = "INSERT INTO products (product_id, product_name, product_price, product_description, product_category, product_image) VALUES (NULL, '$product_name', '$product_price', '$product_description', '$product_category', '$product_image');";
-        $result = $connect->query($sql);
-        $register = true;
-    }
-} catch (PDOException $ex) {
-    print "Connection Failed" . $ex->getMessage();
-}
-$connect = null;
-if ($register) {
-    header("Location: index.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +44,7 @@ if ($register) {
     <div class="rightcolumn" style="display: none" id="add-product">
         <div class="card">
             <h3>Add Product</h3>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
+            <form method="post" action="product.php">
                 <p>Name</p>
                 <input type="text" id="product_name" name="product_name" placeholder="Tello" required>
                 <p>Price</p>
@@ -224,6 +202,26 @@ if ($register) {
         }
     }
 
+    function addItemToLeftColumnAdmin(item) {
+        let productDiv = document.getElementById("leftcolumn");
+        let product = item;
+        productDiv.innerHTML += `
+        <div class="item">
+            <img class="product-image" src="${product.product_image}" alt="${product.product_name}" onclick="showProductAdmin(${product.product_id})">
+            <h3 style="text-align: center">${product.product_name}</h3>
+            <p style="text-align: center">${numberWithCommas(product.product_price)} ₺</p>
+            <button class="button" onclick="addToBasket(${product.product_id})">Add to Cart</button>
+        </div>
+        `;
+    }
+
+    function fillPageAdmin() {
+
+        for (let i = 0; i < db_products.length; i++) {
+            addItemToLeftColumnAdmin(db_products[i]);
+        }
+    }
+
     fillPage()
 
     // Delete login and register from navbar and add logout
@@ -238,6 +236,9 @@ if ($register) {
     if (isAdmin) {
         document.getElementById("add-product").style.display = "block";
         document.getElementById("navbar-create-user").style.display = "block";
+        let productDiv = document.getElementById("leftcolumn");
+        productDiv.innerHTML = "";
+        fillPageAdmin();
     }
 
     function fillByCategory() {

@@ -6,26 +6,6 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function addProduct() {
-    let product_name = document.getElementById("product_name").value;
-    let product_price = document.getElementById("product_price").value;
-    let product_description = document.getElementById("product_description").value;
-    let product_image = document.getElementById("product_image").value;
-
-    if (product_name === "" || product_price === "" || product_description === "" || product_image === "") {
-        alert("Please fill all the fields!");
-    } else {
-        let new_product = new Product(products.length + 1, product_name, parseInt(product_price), product_description, product_image);
-        products.push(new_product);
-        addItemToLeftColumn(new_product);
-        document.getElementById("product_name").value = "";
-        document.getElementById("product_price").value = "";
-        document.getElementById("product_description").value = "";
-        document.getElementById("product_image").value = "";
-    }
-
-}
-
 function addToBasket(product_id) {
     // TODO: Ürün eklendiğinde veya update olduğunda sepet sapıtıyor.
     // TODO: Sepete eklendiğinde animasyon eklenecek
@@ -77,8 +57,6 @@ function showProduct(product_id) {
     document.getElementById("product").style.display = "block";
     document.getElementById("product").innerHTML = `
     <div class="card">
-        <h1 style="text-align: center">${product.product_name}</h1>
-        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
         <div style="display: flex; align-items: center">
         <div style="flex-basis: 50%">
         <img class="product-image" src="${product.product_image}" alt="${product.product_name}"  onclick="hideProduct()"">
@@ -91,6 +69,48 @@ function showProduct(product_id) {
         </div>
         <button class="button" onclick="addToBasket(${product_id})">Add to Cart</button>
     </div>`;
+}
+
+function showProductAdmin(product_id) {
+    let product = db_products.filter(i => i.product_id == product_id)[0];
+    document.getElementById("shop").style.display = "none";
+    document.getElementById("product").style.display = "block";
+    document.getElementById("product").innerHTML = `
+    <div class="card">
+    <form method="post" action="product.php">
+        <div style="display: flex; align-items: center">
+        <div style="flex-basis: 50%">
+        <img class="product-image" src="${product.product_image}" alt="${product.product_name}"  onclick="hideProduct()"">
+        </div>
+        <div style="padding: 0 10px"></div>
+        <div style="flex-basis: 50%">
+            
+                <p>Name</p>
+                <input type="text" id="edit_product_name" name="product_name" placeholder="Tello" required value="${product.product_name}">
+                <p>Price</p>
+                <input type="number" id="edit_product_price" name="product_price" placeholder="750" required value="${product.product_price}">
+                <p>Description</p>
+                <textarea id="edit_product_description"
+                          name="product_description"
+                          placeholder="Tello: an impressive little drone for kids and adults that’s a blast to fly and helps users learn about drones with coding education."
+                          required>${product.product_description}</textarea>
+                <p>Category</p>
+                <input type="text" id="edit_product_category" name="product_category" placeholder="Aerial Photography" required value="${product.product_category}">
+                <p>Image URL</p>
+                <input type="text" id="edit_product_image" name="product_image"
+                       placeholder="https://bit.ly/3iUm1zl" required value="${product.product_image}">
+                <input type="text" id="product_id" name="product_id" style="display: none" value="${product.product_id}">
+            
+        </div>
+        </div>
+        <div style="display: flex">
+            <button class="button red-button" id="delete" type="submit" name="delete" value="delete">Delete</button>
+            <div style="padding: 0 10px"></div>
+            <button class="button"  id="update" type="submit" name="update" value="update">Update</button>
+        </div>
+        </form>
+    </div>`;
+
 }
 
 function hideProduct() {
