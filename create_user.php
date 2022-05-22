@@ -74,8 +74,8 @@ if ($_SESSION['user_is_admin'] == 0 || !$_SESSION['login']) {
             <p>Website</p>
             <input type="url" id="user_website" name="user_website" placeholder="https://boyaci.com">
             <p>Usertype</p>
-            <input type="checkbox" id="user_is_admin" name="user_is_admin" value="1">
-            <label for="user_is_admin"> Admin</label>
+            <input type="checkbox" id="user_is_admin" name="user_is_admin" value="1" style="width: auto">
+            <label for="user_is_admin"> Admin</label><br><br>
             <button class="button black-button" id="submit" type="submit" name="register" value="register">Register</button>
             </script>
         </form>

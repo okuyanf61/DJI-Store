@@ -86,19 +86,19 @@ function showProductAdmin(product_id) {
         <div style="flex-basis: 50%">
             
                 <p>Name</p>
-                <input type="text" id="edit_product_name" name="product_name" placeholder="Tello" required value="${product.product_name}">
+                <input type="text" id="edit_product_name" name="product_name" placeholder="${product.product_name}" required value="${product.product_name}">
                 <p>Price</p>
-                <input type="number" id="edit_product_price" name="product_price" placeholder="750" required value="${product.product_price}">
+                <input type="number" id="edit_product_price" name="product_price" placeholder="${product.product_price}" required value="${product.product_price}">
                 <p>Description</p>
                 <textarea id="edit_product_description"
                           name="product_description"
-                          placeholder="Tello: an impressive little drone for kids and adults that’s a blast to fly and helps users learn about drones with coding education."
+                          placeholder="${product.product_description}"
                           required>${product.product_description}</textarea>
                 <p>Category</p>
-                <input type="text" id="edit_product_category" name="product_category" placeholder="Aerial Photography" required value="${product.product_category}">
+                <input type="text" id="edit_product_category" name="product_category" placeholder="${product.product_category}" required value="${product.product_category}">
                 <p>Image URL</p>
                 <input type="text" id="edit_product_image" name="product_image"
-                       placeholder="https://bit.ly/3iUm1zl" required value="${product.product_image}">
+                       placeholder="${product.product_image}" required value="${product.product_image}">
                 <input type="text" id="product_id" name="product_id" style="display: none" value="${product.product_id}">
             
         </div>
