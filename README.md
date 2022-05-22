@@ -63,7 +63,7 @@ After installation complete just restart the container.
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[Demo](demo.gif)
 
 
 ## TODO
