@@ -3,6 +3,28 @@
 if (!$_SESSION['login']) {
     header("Location: login.php");
 }
+include "credentials.php";
+$register = false;
+try {
+    $connect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    if ($_POST['submit']) {
+        $product_name = $_POST['product_name'];
+        $product_price = $_POST['product_price'];
+        $product_description = $_POST['product_description'];
+        $product_category = $_POST['product_category'];
+        $product_image = $_POST['product_image'];
+        $sql = "INSERT INTO products (product_id, product_name, product_price, product_description, product_category, product_image) VALUES (NULL, '$product_name', '$product_price', '$product_description', '$product_category', '$product_image');";
+        $result = $connect->query($sql);
+        $register = true;
+    }
+} catch (PDOException $ex) {
+    print "Connection Failed" . $ex->getMessage();
+}
+$connect = null;
+if ($register) {
+    header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +66,7 @@ if (!$_SESSION['login']) {
     <div class="rightcolumn" style="display: none" id="add-product">
         <div class="card">
             <h3>Add Product</h3>
-            <form>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
                 <p>Name</p>
                 <input type="text" id="product_name" name="product_name" placeholder="Tello" required>
                 <p>Price</p>
@@ -59,12 +81,7 @@ if (!$_SESSION['login']) {
                 <p>Image URL</p>
                 <input type="url" id="product_image" name="product_image"
                        placeholder="https://bit.ly/3iUm1zl" required>
-                <button class="button black-button" id="submit" onclick="addProduct()">Submit</button>
-                <script>
-                    document.getElementById("submit").addEventListener("click", function (event) {
-                        event.preventDefault()
-                    });
-                </script>
+                <button class="button black-button" id="submit" name="submit" value="submit">Submit</button>
             </form>
         </div>
     </div>
