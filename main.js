@@ -139,7 +139,7 @@ function toggleBasket() {
                         <th>Product</th>
                         <th style="text-align: right">Count</th>
                         <th style="text-align: right">Price</th>
-                        <th style="text-align: right">Delete</th>
+                        <th style="text-align: right"><span onclick="clearShoppingCart()" style="cursor: pointer">Delete</span></th>
                     </tr>
                     </tbody>
                 </table>`;
@@ -151,9 +151,9 @@ function toggleBasket() {
                 table.innerHTML += `
                 <tr>
                     <td>${product.product_name}</td>
-                    <td style="text-align: right"><button onclick="decreaseCount(${product.product_id})" style="border: none">&#45;</button>${product.count}<button onclick="increaseCount(${product.product_id})" style="border: none">&#43;</button></td>
+                    <td style="text-align: right"><button onclick="decreaseCount(${product.product_id})" style="border: none; cursor: pointer">&#45;</button>${product.count}<button onclick="increaseCount(${product.product_id})" style="border: none; cursor: pointer">&#43;</button></td>
                     <td style="text-align: right">${numberWithCommas(product.product_price * product.count)} ₺</td>
-                    <td style="text-align: right"><button onclick="deleteFromBasket(${product.product_id})" style="background: none; border: none">&#10060;</button></td>
+                    <td style="text-align: right"><button onclick="deleteFromBasket(${product.product_id})" style="background: none; border: none; cursor: pointer">&#10060;</button></td>
                 </tr>
                 `;
             }
@@ -197,7 +197,7 @@ function updateBasket() {
                         <th>Product</th>
                         <th style="text-align: right">Count</th>
                         <th style="text-align: right">Price</th>
-                        <th style="text-align: right">Delete</th>
+                        <th style="text-align: right"><span onclick="clearShoppingCart()" style="cursor: pointer">Delete</span></th>
                     </tr>
                     </tbody>
                 </table>`;
@@ -209,9 +209,9 @@ function updateBasket() {
             table.innerHTML += `
                 <tr>
                     <td>${product.product_name}</td>
-                    <td style="text-align: right"><button onclick="decreaseCount(${product.product_id})" style="border: none">&#45;</button>${product.count}<button onclick="increaseCount(${product.product_id})" style="border: none">&#43;</button></td>
+                    <td style="text-align: right"><button onclick="decreaseCount(${product.product_id})" style="border: none; cursor: pointer">&#45;</button>${product.count}<button onclick="increaseCount(${product.product_id})" style="border: none; cursor: pointer">&#43;</button></td>
                     <td style="text-align: right">${numberWithCommas(product.product_price * product.count)} ₺</td>
-                    <td style="text-align: right"><button onclick="deleteFromBasket(${product.product_id})" style="background: none; border: none">&#10060;</button></td>
+                    <td style="text-align: right"><button onclick="deleteFromBasket(${product.product_id})" style="background: none; border: none; cursor: pointer">&#10060;</button></td>
                 </tr>
                 `;
         }
@@ -237,6 +237,11 @@ function updateBasket() {
             `;
     }
 
+}
+
+function clearShoppingCart() {
+    basket = [];
+    updateBasket();
 }
 
 function totalPrice() {

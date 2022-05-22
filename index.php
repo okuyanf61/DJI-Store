@@ -29,7 +29,7 @@ if (!$_SESSION['login']) {
     <a id="navbar-create-user" href="create_user.php" style="display: none">Create User</a>
     <a id="navbar-logout" href="logout.php" style="display: none">Logout</a>
     <button class="basket" id="basket-icon" style="float:right; transition: background-color 0.5s ease-in-out" onclick="toggleBasket()">&#128722;</button>
-    <select name="category" id="category" onchange="fillByCategory()" style="float:right" >
+    <select name="category" id="category" onchange="fillByCategory()" style="float:right; cursor: pointer" >
         <option value="Category">Category</option>
         <option value="FPV Experience">FPV Experience</option>
         <option value="Aerial Cinematic">Aerial Cinematic</option>
