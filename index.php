@@ -27,6 +27,7 @@ if (!$_SESSION['login']) {
     <a id="navbar-register" href="register.php">Register</a>
     <a id="navbar-profile" href="profile.php">Profile</a>
     <a id="navbar-logout" href="logout.php" style="display: none">Logout</a>
+    <a id="navbar-create-user" href="create_user.php" style="display: none">Create User</a>
     <button class="basket" style="float:right" onclick="toggleBasket()">&#128722;</button>
     <select name="category" id="category" onchange="fillByCategory()" style="float:right" >
         <option value="Category">Category</option>
@@ -219,6 +220,7 @@ if (!$_SESSION['login']) {
     let isAdmin = parseInt(<?php echo json_encode($_SESSION["user_is_admin"]); ?>);
     if (isAdmin) {
         document.getElementById("add-product").style.display = "block";
+        document.getElementById("navbar-create-user").style.display = "block";
     }
 
     function fillByCategory() {

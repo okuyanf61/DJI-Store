@@ -53,7 +53,8 @@ if ($_SESSION['user_is_admin'] == 0 || !$_SESSION['login']) {
     <a href="index.php"">Home</a>
     <a href="#">About Us</a>
     <a href="#">Contact</a>
-    <a href="login.php">Login</a>
+    <a href="profile.php.php">Profile</a>
+    <a href="logout.php">Logout</a>
 </div>
 
 <div class="row" id="shop">
