@@ -81,7 +81,7 @@ function showProduct(product_id) {
         <hr style="height:2px;border-width:0;color:gray;background-color:gray">
         <div style="display: flex; align-items: center">
         <div style="flex-basis: 50%">
-        <img class="product-image" src="${product.product_picture}" alt="${product.product_name}"  onclick="hideProduct()"">
+        <img class="product-image" src="${product.product_image}" alt="${product.product_name}"  onclick="hideProduct()"">
         </div>
         <div style="flex-basis: 50%">
         <p style="text-align: justify">${product.product_description}</p>

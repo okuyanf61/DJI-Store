@@ -191,7 +191,7 @@ if (!$_SESSION['login']) {
         let product = item;
         productDiv.innerHTML += `
         <div class="item">
-            <img class="product-image" src="${product.product_picture}" alt="${product.product_name}" onclick="showProduct(${product.product_id})">
+            <img class="product-image" src="${product.product_image}" alt="${product.product_name}" onclick="showProduct(${product.product_id})">
             <h3 style="text-align: center">${product.product_name}</h3>
             <p style="text-align: center">${numberWithCommas(product.product_price)} ₺</p>
             <button class="button" onclick="addToBasket(${product.product_id})">Add to Cart</button>
