@@ -7,7 +7,6 @@ function numberWithCommas(x) {
 }
 
 function addToBasket(product_id) {
-    // TODO: Ürün eklendiğinde veya update olduğunda sepet sapıtıyor.
     // Check if product is already in basket
     let product = db_products.filter(i => i.product_id == product_id)[0];
     let product_in_basket = basket.filter(i => i.product_id == product_id);
@@ -36,7 +35,8 @@ function deleteFromBasket(product_id) {
 function increaseCount(product_id) {
     let product = basket.filter(i => i.product_id == product_id)[0];
     product.count++;
-    let index_of_product = basket.findIndex(product => product.product_id === product_id);
+    let index_of_product = basket.findIndex(product => product.product_id == product_id);
+    console.log(index_of_product);
     basket.splice(index_of_product, 1, product);
     sessionStorage.setItem("basket", JSON.stringify(basket));
     updateBasket();
@@ -46,7 +46,7 @@ function decreaseCount(product_id) {
     let product = basket.filter(i => i.product_id == product_id)[0];
     if (product.count > 1) {
         product.count--;
-        let index_of_product = basket.findIndex(product => product.product_id === product_id);
+        let index_of_product = basket.findIndex(product => product.product_id == product_id);
         basket.splice(index_of_product, 1, product);
     } else {
         deleteFromBasket(product_id);
