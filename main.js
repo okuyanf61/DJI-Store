@@ -27,6 +27,7 @@ function addProduct() {
 }
 
 function addToBasket(product_id) {
+    // TODO: Ürün eklendiğinde veya update olduğunda sepet sapıtıyor.
     // TODO: Sepete eklendiğinde animasyon eklenecek
     // Check if product is already in basket
     let product = db_products.filter(i => i.product_id == product_id)[0];
