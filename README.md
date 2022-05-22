@@ -58,12 +58,12 @@ docker-php-ext-install mysqli pdo pdo_mysql
 After installation complete just restart the container.
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Demo](demo.gif)
 
 
 ## License
 
-[Demo](demo.gif)
+[MIT](https://choosealicense.com/licenses/mit/)
 
 
 ## TODO
