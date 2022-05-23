@@ -61,6 +61,8 @@ function showProduct(product_id) {
     document.getElementById("product").style.display = "block";
     document.getElementById("product").innerHTML = `
     <div class="card">
+        <h1 style="text-align: center">${product.product_name}</h1>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
         <div style="display: flex; align-items: center">
         <div style="flex-basis: 50%">
         <img class="product-image" src="${product.product_image}" alt="${product.product_name}"  onclick="hideProduct()"">
